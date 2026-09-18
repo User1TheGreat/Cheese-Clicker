@@ -3,10 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="Assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="Assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="Assets/favicon-16x16.png"
+    />
+    <link rel="icon" href="Assets/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Tektur:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Cheese Clicker Arcade</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <audio id="bg-music" loop preload="auto">
+      <source src="SFX/background-music.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div id="start-menu" class="modal-overlay">
+      <div class="start-menu-content">
+        <h1>🧀 Cheese Clicker 🧀</h1>
+        <p>When you are ready, click start to begin baking!</p>
+        <div class="start-menu-buttons">
+          <button id="start-game-btn" class="primary-btn" onclick="startGame()">
+            Start Game
+          </button>
+          <button
+            id="update-logs-btn"
+            class="secondary-btn"
+            onclick="openUpdateLogs()"
+          >
+            Update Logs
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="update-logs-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content start-menu-content">
+        <h2>📜 Update Logs</h2>
+        <div
+          class="update-logs-body"
+          style="
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 13px;
+            line-height: 1.4;
+          "
+        >
+          <p><strong>v1.1:</strong></p>
+          <ul>
+            <li>Added start menu and logs menu</li>
+            <li>Fixed a bunch of bugs</li>
+            <li>Added frenzies and the first minigame to the game!</li>
+            <li>
+              Just so you know, the minigame is still in development, which
+              means it is really buggy and hard to play.
+            </li>
+            <li>
+              Changed layout of Achievements and prestige menus, and fixed hard
+              reset.
+            </li>
+            <li>Added new achievements</li>
+            <li>Added favicon to the game</li>
+            <li>Added background music</li>
+          </ul>
+
+          <p><strong>v1.0:</strong></p>
+          <ul>
+            <li>Initial release</li>
+            <li>Was buggy because I had to publish it really quickly</li>
+          </ul>
+        </div>
+        <button class="primary-btn" onclick="closeUpdateLogs()">Close</button>
+      </div>
+    </div>
     <!-- Top News Ticker Bar -->
     <div class="news-ticker-container">
       <div id="news-ticker" class="news-ticker">
@@ -55,7 +142,7 @@
               class="footer-action-btn ach-modal-btn"
               onclick="openAchievementsModal()"
             >
-              🏆 Achievements (<span id="ach-count">0</span>/35)
+              🏆 Achievements (<span id="ach-count">0</span>/50)
             </button>
           </div>
         </div>
@@ -123,7 +210,7 @@
     <div id="achievements-modal" class="modal-overlay" style="display: none">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Trophy Room</h2>
+          <h2>All Achievements</h2>
           <button class="close-modal-btn" onclick="closeAchievementsModal()">
             ✕
           </button>
@@ -144,7 +231,7 @@
     ></audio>
 
     <!-- Reset Confirmation Modal -->
-    <div id="reset-modal" class="modal-overlay">
+    <div id="reset-modal" class="modal-overlay" style="display: none">
       <div class="modal-content">
         <h3>⚠️ Hard Reset</h3>
         <p>
@@ -159,7 +246,7 @@
     </div>
 
     <!-- Prestige Shop Modal -->
-    <div id="prestige-modal" class="modal-overlay">
+    <div id="prestige-modal" class="modal-overlay" style="display: none">
       <div class="modal-content large-modal">
         <h2>✨ Cheese Prestige ✨</h2>
         <p>
@@ -183,6 +270,101 @@
       </div>
     </div>
 
+    <!-- Dynamic Event Elements -->
+    <div
+      id="golden-cheese"
+      style="
+        display: none;
+        position: fixed;
+        font-size: 40px;
+        cursor: pointer;
+        z-index: 9998;
+        user-select: none;
+        filter: drop-shadow(0 0 10px gold);
+      "
+    >
+      🌟
+    </div>
+
+    <div id="admin-panel-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content start-menu-content">
+        <h2>🛠️ Admin Panel 🛠️</h2>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            font-size: 14px;
+          "
+        >
+          <!-- Add Money -->
+          <div>
+            <label>Add Cheese:</label>
+            <div style="display: flex; gap: 5px">
+              <input
+                type="number"
+                id="admin-cheese-input"
+                value="1000000"
+                style="flex: 1; padding: 5px"
+              />
+              <button class="primary-btn" onclick="adminAddCheese()">
+                Grant
+              </button>
+            </div>
+          </div>
+
+          <!-- Add Building Levels -->
+          <div>
+            <label>Add Building Levels:</label>
+            <div style="display: flex; gap: 5px">
+              <select id="admin-building-select" style="flex: 1; padding: 5px">
+                <option value="grater">Cheese Grater</option>
+                <option value="whisk">Whisk</option>
+                <option value="factory">Factory</option>
+                <option value="portal">Portal</option>
+                <option value="accelerator">Curd Accelerator</option>
+              </select>
+              <input
+                type="number"
+                id="admin-building-amount"
+                value="10"
+                style="width: 60px; padding: 5px"
+              />
+              <button class="primary-btn" onclick="adminAddBuildings()">
+                Add
+              </button>
+            </div>
+          </div>
+
+          <!-- Trigger Events -->
+          <div style="display: flex; gap: 10px; margin-top: 5px">
+            <button
+              class="primary-btn"
+              style="flex: 1"
+              onclick="adminTriggerFrenzy()"
+            >
+              Spawn Golden Frenzy
+            </button>
+            <button
+              class="primary-btn"
+              style="flex: 1"
+              onclick="adminTriggerMice()"
+            >
+              Spawn Mice
+            </button>
+          </div>
+        </div>
+        <button
+          class="secondary-btn"
+          style="margin-top: 15px"
+          onclick="closeAdminPanel()"
+        >
+          Close Admin
+        </button>
+      </div>
+    </div>
+    <div id="mouse-invasion-container"></div>
     <script src="script.js"></script>
   </body>
 </html>

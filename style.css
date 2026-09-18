@@ -5,7 +5,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Outfit", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
@@ -27,6 +27,93 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* ========================================== */
+/* START MENU and UPDATE LOGS MODAL           */
+/* ========================================== */
+
+#start-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 13, 11, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensures it sits on top of everything */
+}
+
+.start-menu-content {
+  text-align: center;
+  background: #241f1b;
+  border: 1px solid var(--accent);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 183, 3, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.start-menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#update-logs-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 13, 11, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Sits on top of everything, even the start menu */
+}
+
+.primary-btn {
+  background-color: var(--accent);
+  color: var(--bg-main);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* ========================================== */
+/* CUSTOM SCROLLBARS                          */
+/* ========================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141210;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--panel-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 /* ========================================== */
@@ -73,6 +160,19 @@ body {
   padding: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+}
+
+.load-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2b2b2b;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
 }
 
 /* ========================================== */
@@ -359,200 +459,13 @@ body {
 }
 
 /* ========================================== */
-/* MODALS & PRESTIGE INTERFACE                */
-/* ========================================== */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(2px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: var(--panel-bg);
-  border: 1px solid var(--panel-border);
-  width: 500px;
-  max-width: 90vw;
-  max-height: 80vh;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-  padding: 20px;
-  gap: 12px;
-}
-
-.large-modal {
-  width: 580px;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--panel-border);
-  padding-bottom: 10px;
-}
-
-.modal-header h2,
-.modal-content h3 {
-  color: var(--accent);
-  font-size: 20px;
-}
-
-.modal-content p {
-  color: var(--text-muted);
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.close-modal-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.close-modal-btn:hover {
-  color: var(--text-main);
-}
-
-.achievements-grid {
-  overflow-y: auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  max-height: 50vh;
-}
-
-.achievement-card {
-  background-color: #241f1b;
-  border: 1px solid var(--panel-border);
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.achievement-card.locked {
-  opacity: 0.5;
-}
-
-.achievement-icon {
-  font-size: 24px;
-}
-
-.achievement-info h4 {
-  font-size: 14px;
-  color: var(--accent);
-}
-
-.achievement-info p {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* Prestige specific styles */
-.prestige-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 240px;
-  overflow-y: auto;
-  padding-right: 4px;
-  margin: 5px 0;
-}
-
-.prestige-upgrade-card {
-  background: #241f1b;
-  border: 1px solid var(--panel-border);
-  padding: 10px 12px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.prestige-upgrade-card strong {
-  color: var(--text-main);
-  font-size: 13px;
-}
-
-.prestige-upgrade-card small {
-  color: var(--text-muted);
-  font-size: 11px;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--panel-border);
-  margin: 4px 0;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.warning-btn,
-.success-btn,
-.danger-btn,
-.secondary-btn {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 12px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.warning-btn {
-  background-color: var(--accent);
-  color: var(--bg-main);
-}
-.success-btn {
-  background-color: var(--success);
-  color: white;
-}
-.danger-btn {
-  background-color: var(--danger);
-  color: white;
-}
-.secondary-btn {
-  background-color: #3b332b;
-  border: 1px solid var(--panel-border);
-  color: var(--text-main);
-}
-
-.warning-btn:hover,
-.success-btn:hover,
-.danger-btn:hover,
-.secondary-btn:hover {
-  opacity: 0.85;
-}
-
-/* ========================================== */
 /* FLOATING CLICK JUICE TEXT STYLES           */
 /* ========================================== */
 .floating-text {
   position: fixed;
   font-size: 18px;
   font-weight: 800;
-  color: var(--accent);
+  color: rgb(198, 192, 7);
   pointer-events: none;
   user-select: none;
   animation: floatUp 0.6s ease-out forwards;
@@ -569,4 +482,325 @@ body {
     opacity: 0;
     transform: translateY(-60px) scale(1.2);
   }
+}
+
+/* ========================================== */
+/* EVENT & MINI-GAME EXTRA STYLES             */
+/* ========================================== */
+#golden-cheese {
+  transition: transform 0.2s ease;
+  animation: pulseCheese 1.5s infinite alternate;
+}
+
+#golden-cheese:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+@keyframes pulseCheese {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px gold);
+  }
+  100% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 16px #ffea00);
+  }
+}
+
+#mouse-invasion-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.mouse-item {
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 6s linear;
+}
+
+/* ========================================== */
+/* MODAL & POPUP MENU STYLES                  */
+/* ========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 24px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-content.large-modal {
+  max-width: 800px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 12px;
+}
+
+.modal-header h2 {
+  color: var(--accent);
+  font-size: 22px;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+  color: var(--text-main);
+}
+
+/* ========================================== */
+/* ACHIEVEMENTS GRID & CARDS                  */
+/* ========================================== */
+.achievements-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+  padding-right: 4px;
+}
+
+.achievement-card {
+  background-color: #241f1b;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition:
+    opacity 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+/* Style specifically for locked achievements */
+.achievement-card.locked {
+  opacity: 0.5;
+  filter: grayscale(30%);
+}
+
+/* Style specifically for unlocked achievements */
+.achievement-card.unlocked {
+  opacity: 1;
+  border: 1px solid var(--accent); /* Shiny yellow border */
+  background: linear-gradient(
+    135deg,
+    #241f1b 0%,
+    #352c22 100%
+  ); /* Subtle bright gradient */
+  box-shadow: 0 0 10px rgba(255, 183, 3, 0.15); /* Soft gold glow */
+}
+
+.achievement-icon {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+}
+
+.achievement-info h4 {
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.achievement-info p {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ========================================== */
+/* PRESTIGE SHOP GRID & BUTTONS               */
+/* ========================================== */
+.prestige-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+  padding-right: 4px;
+}
+
+.prestige-card {
+  background-color: #141210; /* Darker, distinct box background */
+  border: 1px solid var(--panel-border);
+  border-radius: 10px; /* Clearer corner radius */
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.prestige-card:hover {
+  background-color: #1e1b18;
+  border-color: var(--accent);
+}
+
+.prestige-card h4 {
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.prestige-card p {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.prestige-buy-btn {
+  background-color: var(--accent);
+  color: var(--bg-main);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.prestige-buy-btn:hover:not([disabled]) {
+  background-color: var(--accent-hover);
+}
+
+.prestige-buy-btn[disabled] {
+  background-color: #3a332d;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* ========================================== */
+/* MODAL ACTIONS & CONFIRMATION MENUS         */
+/* ========================================== */
+.modal-content h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--panel-border);
+  margin: 12px 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.danger-btn {
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+  transition: opacity 0.2s;
+}
+
+.danger-btn:hover {
+  opacity: 0.9;
+}
+
+.secondary-btn,
+.success-btn,
+.warning-btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+  transition: opacity 0.2s;
+}
+
+.secondary-btn {
+  background-color: #3b332b;
+  color: var(--text-main);
+}
+
+.success-btn {
+  background-color: var(--success);
+  color: white;
+}
+
+.warning-btn {
+  background-color: var(--accent);
+  color: var(--bg-main);
+}
+
+.secondary-btn:hover,
+.success-btn:hover,
+.warning-btn:hover {
+  opacity: 0.9;
+}
+
+#admin-panel-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 13, 11, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
 }

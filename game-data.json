@@ -1,0 +1,586 @@
+{
+  "prestige": [
+    {
+      "id": "p_click_1",
+      "name": "Gouda Touch",
+      "desc": "Increase your click power by 1.25x.",
+      "cost": 15,
+      "type": "click_mult",
+      "val": 1.25
+    },
+    {
+      "id": "p_click_2",
+      "name": "Cheddar Reflexes",
+      "desc": "Increase manual click power by 1.5x.",
+      "cost": 75,
+      "type": "click_mult",
+      "val": 1.5
+    },
+    {
+      "id": "p_click_3",
+      "name": "Titanium Fingertips",
+      "desc": "Double your manual click power further (2x).",
+      "cost": 500,
+      "type": "click_mult",
+      "val": 2.0
+    },
+    {
+      "id": "p_sps_1",
+      "name": "Brie Flow",
+      "desc": "Boost all building production by +10%.",
+      "cost": 50,
+      "type": "sps_mult",
+      "val": 0.1
+    },
+    {
+      "id": "p_sps_2",
+      "name": "Swiss Efficiency",
+      "desc": "Boost all building production by +20%.",
+      "cost": 150,
+      "type": "sps_mult",
+      "val": 0.2
+    },
+    {
+      "id": "p_sps_3",
+      "name": "Provolone Pumping",
+      "desc": "Boost all building production by +40%.",
+      "cost": 350,
+      "type": "sps_mult",
+      "val": 0.4
+    },
+    {
+      "id": "p_sps_4",
+      "name": "Gorgonzola Surge",
+      "desc": "Boost all building production by +75%.",
+      "cost": 850,
+      "type": "sps_mult",
+      "val": 0.75
+    },
+    {
+      "id": "p_cheap_1",
+      "name": "Feta Subsidies",
+      "desc": "Reduce building cost scaling slightly (-1%).",
+      "cost": 40,
+      "type": "cost_reduce",
+      "val": 0.01
+    },
+    {
+      "id": "p_cheap_2",
+      "name": "Ricotta Bargains",
+      "desc": "Reduce building cost scaling further (-3%).",
+      "cost": 150,
+      "type": "cost_reduce",
+      "val": 0.03
+    },
+    {
+      "id": "p_cheap_3",
+      "name": "Emmental Economy",
+      "desc": "Massively streamline building costs (-6%).",
+      "cost": 750,
+      "type": "cost_reduce",
+      "val": 0.06
+    },
+    {
+      "id": "p_start_1",
+      "name": "Parmesan Starter",
+      "desc": "Start every run with +1,000 cheese.",
+      "cost": 60,
+      "type": "starting_cash",
+      "val": 1000
+    },
+    {
+      "id": "p_start_2",
+      "name": "Blue Cheese Vault",
+      "desc": "Start every run with +25,000 cheese.",
+      "cost": 300,
+      "type": "starting_cash",
+      "val": 25000
+    },
+    {
+      "id": "p_start_3",
+      "name": "Imperial Cheese Reserve",
+      "desc": "Start every run with +500,000 cheese.",
+      "cost": 1500,
+      "type": "starting_cash",
+      "val": 500000
+    },
+    {
+      "id": "p_grater_boost",
+      "name": "Sharper Edges",
+      "desc": "Cheese Graters produce 2x more output.",
+      "cost": 70,
+      "type": "building_spec",
+      "target": "grater",
+      "val": 2
+    },
+    {
+      "id": "p_whisk_boost",
+      "name": "Turbo Motor",
+      "desc": "Rotary Whisks produce 2x more output.",
+      "cost": 120,
+      "type": "building_spec",
+      "target": "whisk",
+      "val": 2
+    },
+    {
+      "id": "p_farm_boost",
+      "name": "Super Fertilizer",
+      "desc": "Dairy Farms produce 2x more output.",
+      "cost": 200,
+      "type": "building_spec",
+      "target": "farm",
+      "val": 2
+    },
+    {
+      "id": "p_factory_boost",
+      "name": "Industrial Melter",
+      "desc": "Fondue Factories produce 2x more output.",
+      "cost": 400,
+      "type": "building_spec",
+      "target": "factory",
+      "val": 2
+    },
+    {
+      "id": "p_lucky_1",
+      "name": "Golden Curd Radar",
+      "desc": "Increase general production global bonus by +10%.",
+      "cost": 200,
+      "type": "sps_mult",
+      "val": 0.1
+    },
+    {
+      "id": "p_ultimate_1",
+      "name": "The Big Cheese Legacy",
+      "desc": "Multiply all production across the board by 2x.",
+      "cost": 1200,
+      "type": "sps_mult",
+      "val": 2.0
+    },
+    {
+      "id": "p_ultimate_2",
+      "name": "The Omega Cheese",
+      "desc": "Multiply all production across the board by 3x.",
+      "cost": 3000,
+      "type": "sps_mult",
+      "val": 3.0
+    }
+  ],
+  "achievements": [
+    {
+      "id": "click_1",
+      "name": "First Cheese",
+      "desc": "Click your first piece of cheese.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 1 }
+    },
+    {
+      "id": "click_100",
+      "name": "Cheese Collector",
+      "desc": "Reach 100 total cheese collected.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 100 }
+    },
+    {
+      "id": "click_1000",
+      "name": "Cheese Enthusiast",
+      "desc": "Reach 1,000 total cheese collected.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 1000 }
+    },
+    {
+      "id": "click_10000",
+      "name": "Cheesy Master",
+      "desc": "Reach 10,000 total cheese collected.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 10000 }
+    },
+    {
+      "id": "click_100000",
+      "name": "Cheese Tycoon",
+      "desc": "Reach 100,000 total cheese collected.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 100000 }
+    },
+    {
+      "id": "click_1000000",
+      "name": "Millionaire Curds",
+      "desc": "Reach 1,000,000 total cheese collected.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 1000000 }
+    },
+    {
+      "id": "click_10000000",
+      "name": "The Big Cheese",
+      "desc": "Reach 10,000,000 total cheese collected.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 10000000 }
+    },
+    {
+      "id": "click_1000000000",
+      "name": "Billionaire of Swiss",
+      "desc": "Reach 1,000,000,000 total cheese collected.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 1000000000 }
+    },
+    {
+      "id": "grater_1",
+      "name": "Grater Starter",
+      "desc": "Buy your first Cheese Grater.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "grater", "value": 1 }
+    },
+    {
+      "id": "grater_10",
+      "name": "Flakes on Flakes",
+      "desc": "Own 10 Cheese Graters.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "grater", "value": 10 }
+    },
+    {
+      "id": "grater_50",
+      "name": "Mountain of Shreds",
+      "desc": "Own 50 Cheese Graters.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "grater", "value": 50 }
+    },
+    {
+      "id": "grater_100",
+      "name": "Grandmaster Grater",
+      "desc": "Own 100 Cheese Graters.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": {
+        "type": "building_count",
+        "target": "grater",
+        "value": 100
+      }
+    },
+    {
+      "id": "whisk_1",
+      "name": "Spinning Up",
+      "desc": "Buy your first Rotary Whisk.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "whisk", "value": 1 }
+    },
+    {
+      "id": "farm_1",
+      "name": "Pasture Prime",
+      "desc": "Buy your first Dairy Farm.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "farm", "value": 1 }
+    },
+    {
+      "id": "farm_10",
+      "name": "Bovine Empire",
+      "desc": "Own 10 Dairy Farms.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "farm", "value": 10 }
+    },
+    {
+      "id": "farm_50",
+      "name": "Endless Meadows",
+      "desc": "Own 50 Dairy Farms.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "farm", "value": 50 }
+    },
+    {
+      "id": "factory_1",
+      "name": "Melt Down",
+      "desc": "Buy your first Fondue Factory.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "factory", "value": 1 }
+    },
+    {
+      "id": "factory_10",
+      "name": "Vat Operator",
+      "desc": "Own 10 Fondue Factories.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": {
+        "type": "building_count",
+        "target": "factory",
+        "value": 10
+      }
+    },
+    {
+      "id": "factory_25",
+      "name": "Fondue Tycoon",
+      "desc": "Own 25 Fondue Factories.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": {
+        "type": "building_count",
+        "target": "factory",
+        "value": 25
+      }
+    },
+    {
+      "id": "lab_1",
+      "name": "Mad Scientist",
+      "desc": "Buy your first Genetics Lab.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "lab", "value": 1 }
+    },
+    {
+      "id": "mine_1",
+      "name": "One Small Step",
+      "desc": "Buy your first Moon Cheese Mine.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "mine", "value": 1 }
+    },
+    {
+      "id": "churner_1",
+      "name": "Rapid Spin",
+      "desc": "Buy your first Churner.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "churner", "value": 1 }
+    },
+    {
+      "id": "press_1",
+      "name": "Heavy Compression",
+      "desc": "Buy your first Press.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "press", "value": 1 }
+    },
+    {
+      "id": "accelerator_1",
+      "name": "Subatomic Curds",
+      "desc": "Buy your first Accelerator.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": {
+        "type": "building_count",
+        "target": "accelerator",
+        "value": 1
+      }
+    },
+    {
+      "id": "portal_1",
+      "name": "Milky Way",
+      "desc": "Buy your first Cheddar Portal.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "portal", "value": 1 }
+    },
+    {
+      "id": "portal_10",
+      "name": "Universal Curds",
+      "desc": "Own 10 Cheddar Portals.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "building_count", "target": "portal", "value": 10 }
+    },
+    {
+      "id": "upgrade_1",
+      "name": "Optimized Workflow",
+      "desc": "Purchase your first dairy upgrade.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "upgrade_count", "value": 1 }
+    },
+    {
+      "id": "all_upgrades_5",
+      "name": "Master Craftsman",
+      "desc": "Purchase 5 dairy upgrades.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "upgrade_count", "value": 5 }
+    },
+    {
+      "id": "all_upgrades_15",
+      "name": "The Whole Catalog",
+      "desc": "Purchase 15 total upgrades.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "upgrade_count", "value": 15 }
+    },
+    {
+      "id": "sps_10",
+      "name": "Flowing Streams",
+      "desc": "Reach 10 cheese per second.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "sps", "value": 10 }
+    },
+    {
+      "id": "sps_100",
+      "name": "Torrents of Curds",
+      "desc": "Reach 100 cheese per second.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "sps", "value": 100 }
+    },
+    {
+      "id": "sps_1000",
+      "name": "Dairy Tsunami",
+      "desc": "Reach 1,000 cheese per second.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "sps", "value": 1000 }
+    },
+    {
+      "id": "sps_50000",
+      "name": "Intergalactic Dairy",
+      "desc": "Reach 50,000 cheese per second.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "sps", "value": 50000 }
+    },
+    {
+      "id": "clicks_50",
+      "name": "Rapid Fire Fingers",
+      "desc": "Click the main button 50 times in a session.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "session_clicks", "value": 50 }
+    },
+    {
+      "id": "clicks_1000",
+      "name": "Heavy Metal Fingers",
+      "desc": "Click the main cheese button 1,000 times in a session.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "session_clicks", "value": 1000 }
+    },
+    {
+      "id": "ach_fast_fingers",
+      "name": "Fast Fingers",
+      "desc": "Reach 1,000 total manual clicks on the big cheese button.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "clicks", "value": 1000 }
+    },
+    {
+      "id": "ach_dairy_dynasty",
+      "name": "Dairy Dynasty",
+      "desc": "Accumulate 1,000,000 total cheese produced in a single run.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "score", "value": 1000000 }
+    },
+    {
+      "id": "ach_extra_1",
+      "name": "Whey To Go",
+      "desc": "Reach 500,000 cheese per second.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "sps", "value": 500000 }
+    },
+    {
+      "id": "ach_extra_2",
+      "name": "Cheddar Connoisseur",
+      "desc": "Own 50 total buildings of any type.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "total_buildings", "value": 50 }
+    },
+    {
+      "id": "ach_extra_3",
+      "name": "Industrial Lactation",
+      "desc": "Own 200 total buildings across your empire.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "total_buildings", "value": 200 }
+    },
+    {
+      "id": "ach_extra_4",
+      "name": "The Golden Touch",
+      "desc": "Click 10 Golden Cheeses.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "golden_clicks", "value": 10 }
+    },
+    {
+      "id": "ach_extra_5",
+      "name": "Rodent Wrangler",
+      "desc": "Catch 15 mice during Mouse Invasions.",
+      "unlocked": false,
+      "isSecret": false,
+      "condition": { "type": "mice_clicked", "value": 15 }
+    },
+    {
+      "id": "secret_1",
+      "name": "???",
+      "desc": "Hint: MY FINGERS ARE GOING TO VAPORIZE!",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "session_clicks", "value": 250 }
+    },
+    {
+      "id": "secret_2",
+      "name": "???",
+      "desc": "Hint: Come on man, I got to wait!",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "idle_timer", "value": 300 }
+    },
+    {
+      "id": "secret_3",
+      "name": "???",
+      "desc": "Hint: Sometimes scrolling away from the top and hunting through the bottom of the store reveals hidden treasures.",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "flag", "target": "checkedStoreBottom" }
+    },
+    {
+      "id": "secret_4",
+      "name": "???",
+      "desc": "Hint: Wait, take these buildings back... I want a refund!",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "flag", "target": "hasSoldABuilding" }
+    },
+    {
+      "id": "secret_5",
+      "name": "???",
+      "desc": "Hint: Staring at your own score won't make the numbers go up faster... or will it?",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "flag", "target": "clickedScoreCounter" }
+    },
+    {
+      "id": "secret_6",
+      "name": "???",
+      "desc": "Hint: Wow, someone who will actually click the news multiple times... digging for a juicy headline, are we?",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "flag", "target": "clickedNewsTickerMultiple" }
+    },
+    {
+      "id": "secret_7",
+      "name": "???",
+      "desc": "Hint: AHH, was that a werewolf?",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "night_owl" }
+    },
+    {
+      "id": "secret_8",
+      "name": "???",
+      "desc": "Hint: Finally, we have them all, I should probably buy more though?",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "exact_one_of_each" }
+    }
+  ]
+}
