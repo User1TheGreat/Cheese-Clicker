@@ -457,8 +457,6 @@ async function initGame() {
           case "flag":
             if (c.target === "checkedStoreBottom") return checkedStoreBottom;
             if (c.target === "hasSoldABuilding") return hasSoldABuilding;
-            if (c.target === "clickedNewsTickerMultiple")
-              return clickedNewsTickerMultiple;
             if (c.target === "clickedScoreCounter") return clickedScoreCounter;
             return false;
           case "broke_check":

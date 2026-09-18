@@ -558,14 +558,7 @@
       "isSecret": true,
       "condition": { "type": "flag", "target": "clickedScoreCounter" }
     },
-    {
-      "id": "secret_6",
-      "name": "???",
-      "desc": "Hint: Wow, someone who will actually click the news multiple times... digging for a juicy headline, are we?",
-      "unlocked": false,
-      "isSecret": true,
-      "condition": { "type": "flag", "target": "clickedNewsTickerMultiple" }
-    },
+
     {
       "id": "secret_7",
       "name": "???",
