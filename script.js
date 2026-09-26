@@ -12,6 +12,7 @@ let upgradesData = []; // Dynamic array holding building and upgrade definitions
 let prestigePoints = 0; // Currency earned from prestige resets
 let permanentUpgrades = {}; // Lookup dictionary for unlocked prestige bonuses
 let gameStarted = false; // <-- Added here to track the start menu state
+let newsInterval = null; // Interval for rotating news headlines
 
 // Frenzy & Mini-game States
 let frenzyActive = false; // Tracks whether the 7x Golden Cheese Frenzy is active
@@ -49,6 +50,46 @@ const newsHeadlines = [
   "🧀 News: People love cheese so much, they are making everything out of it, this is getting out of hand!",
 ];
 
+function updateNewsTicker() {
+  const newsEl = document.getElementById("news-ticker");
+  if (!newsEl) return;
+
+  // 1. If a frenzy is active, lock onto the live countdown immediately (no fading needed for urgency)
+  if (typeof frenzyActive !== "undefined" && frenzyActive) {
+    newsEl.style.opacity = 1; // Ensure it's fully visible
+    newsEl.innerText = `🧀 CHEESE FRENZY ACTIVE! Time remaining: ${Math.ceil(frenzyTimer)}s 🧀`;
+    return; // Stop here so normal news doesn't run
+  }
+
+  // 2. Otherwise, run your smooth fade transition for normal news headlines
+  if (typeof newsHeadlines !== "undefined" && newsHeadlines.length > 0) {
+    currentNewsIndex = (currentNewsIndex + 1) % newsHeadlines.length;
+
+    // Fade out
+    newsEl.style.opacity = 0;
+    setTimeout(() => {
+      // Safety check: if a frenzy started while fading out, abort changing to normal news
+      if (typeof frenzyActive !== "undefined" && frenzyActive) return;
+
+      newsEl.textContent = newsHeadlines[currentNewsIndex];
+      // Fade in
+      newsEl.style.opacity = 1;
+    }, 500);
+  }
+}
+
+function startNewsTickerSystem() {
+  if (newsInterval) clearInterval(newsInterval);
+
+  // Run once immediately on start
+  updateNewsTicker();
+
+  // Rotate normal news every 7 seconds (updateNewsTicker handles the frenzy guard automatically)
+  newsInterval = setInterval(() => {
+    updateNewsTicker();
+  }, 7000);
+}
+
 // Start background music on the user's very first click anywhere on the page
 document.addEventListener(
   "click",
@@ -69,6 +110,27 @@ document.addEventListener(
   },
   { once: true },
 );
+
+/**
+ * ==========================================
+ * HELPER FUNCTIONS
+ * ==========================================
+ */
+
+function getStartingCashFromUpgrades() {
+  let startingCash = 0;
+  if (
+    typeof prestigeCatalog !== "undefined" &&
+    typeof permanentUpgrades !== "undefined"
+  ) {
+    prestigeCatalog.forEach((up) => {
+      if (permanentUpgrades[up.id] && up.type === "starting_cash") {
+        startingCash += up.val;
+      }
+    });
+  }
+  return startingCash;
+}
 
 /**
  * ==========================================
@@ -109,6 +171,17 @@ function formatNumber(value) {
     "Ocg", // Octogintillion
     "Nog", // Nonagintillion
     "Ce", // Centillion
+    "UCe",
+    "DCE",
+    "TCE",
+    "QaCE",
+    "QiCE",
+    "SxCE",
+    "SpCE",
+    "OCE",
+    "NCE",
+    "DcCE",
+    "UDcCE",
   ];
 
   let i = 0;
@@ -221,6 +294,16 @@ function startGame() {
   if (startMenu) {
     startMenu.style.display = "none";
   }
+
+  // Start the news ticker right away
+  startNewsTickerSystem();
+
+  // Wait 45 seconds before triggering the FIRST mouse invasion wave
+  setTimeout(() => {
+    if (gameStarted) {
+      triggerMouseInvasion();
+    }
+  }, 45000);
 }
 
 function openUpdateLogs() {
@@ -313,12 +396,15 @@ window.addEventListener("beforeunload", () => {
 // Spawns a clickable golden cheese element randomly on screen (Paused until start menu is clicked)
 setInterval(() => {
   if (!gameStarted) return;
-  if (Math.random() < 0.3) {
+  // Lowered from 0.3 (30%) to 0.08 (8%) chance
+  if (Math.random() < 0.08) {
     if (typeof spawnGoldenCheese === "function") {
       spawnGoldenCheese();
     }
   }
 }, 15000);
+
+let frenzyInterval = null;
 
 function spawnGoldenCheese() {
   const goldenEl = document.getElementById("golden-cheese");
@@ -342,48 +428,39 @@ function spawnGoldenCheese() {
   };
 }
 
-// Triggers the Golden Frenzy buff
+// Triggers the Golden Frenzy buff with a clean, single interval
 function triggerFrenzy() {
   if (!gameStarted) return;
+
   frenzyActive = true;
   frenzyTimer = 15; // 15 seconds of frenzy duration
 
-  const ticker = document.getElementById("news-ticker");
-  if (ticker) {
-    ticker.textContent =
-      "🌟 GOLDEN FRENZY! Production & Click power multiplied by 7x for 15 seconds!";
-  }
+  // Immediately display the frenzy start text on the news ticker
+  updateNewsTicker();
 }
-
-// Checks every 2 minutes with a 40% chance (Spawns roughly every 5 minutes on average)
-setInterval(() => {
-  if (!gameStarted) return;
-  if (!frenzyActive && Math.random() < 0.4) {
-    spawnGoldenCheese();
-  }
-}, 120000);
-
-// Spawns a wave of mice across the screen for bonus currency
 function triggerMouseInvasion() {
   const container = document.getElementById("mouse-invasion-container");
   if (!container || !gameStarted) return;
 
-  container.style.pointerEvents = "auto";
+  // REMOVED: container.style.pointerEvents = "auto"; (This was blocking your clicks!)
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
     const mouse = document.createElement("div");
     mouse.className = "mouse-item";
     mouse.innerHTML = "🐭";
+
+    // Ensure individual mice can be clicked even if container passes through clicks
+    mouse.style.pointerEvents = "auto";
 
     const startY = Math.random() * (window.innerHeight - 100);
     mouse.style.left = "-50px";
     mouse.style.top = `${startY}px`;
 
     mouse.onclick = () => {
-      // Calculate SPS reward scaling safely
       const sps =
         typeof calculateTotalSPS === "function" ? calculateTotalSPS() : 1;
-      score += Math.max(10, sps * 10);
+
+      score += Math.max(50, sps * 30);
       playSound("sfx-buy");
       mouse.remove();
     };
@@ -396,20 +473,14 @@ function triggerMouseInvasion() {
 
     setTimeout(() => {
       if (mouse.parentElement) mouse.remove();
-    }, 3100);
+    }, 6500);
   }
 
-  setTimeout(() => {
-    container.style.pointerEvents = "none";
-  }, 3500);
+  // --- SELF-LOOPING TIMER ---
+  if (gameStarted) {
+    setTimeout(triggerMouseInvasion, 45000);
+  }
 }
-
-// Trigger mouse invasion loop every 60 seconds
-setInterval(() => {
-  if (!gameStarted) return;
-  triggerMouseInvasion();
-}, 60000);
-
 /**
  * ==========================================
  * 6. INITIALIZATION & DATA FETCHING
@@ -459,6 +530,10 @@ async function initGame() {
             if (c.target === "hasSoldABuilding") return hasSoldABuilding;
             if (c.target === "clickedScoreCounter") return clickedScoreCounter;
             return false;
+          case "secret_code":
+            if (c.value === "cheese") return typedCheeseUnlocked;
+            if (c.value === "revert") return typedRevertUnlocked;
+            return false;
           case "broke_check":
             return score === 150 && sessionClicks > 50;
           case "night_owl": {
@@ -507,6 +582,11 @@ async function initGame() {
     });
 
     loadGame();
+
+    // --- FIX: Apply starting cash from prestige upgrades if score is 0 on load ---
+    if (score === 0 && typeof getStartingCashFromUpgrades === "function") {
+      score = getStartingCashFromUpgrades();
+    }
 
     renderShop();
     renderActiveBuildings();
@@ -1095,7 +1175,7 @@ function updateDisplay() {
   });
 }
 
-// Loop 1: Passive Income tick + Idle Timer Tracker (Every 1 second)
+// Loop 1: Passive Income tick (Every 1 second)
 setInterval(() => {
   let sps = calculateTotalSPS();
   if (sps > 0) {
@@ -1107,35 +1187,27 @@ setInterval(() => {
 
   if (frenzyActive) {
     frenzyTimer--;
+
     if (frenzyTimer <= 0) {
       frenzyActive = false;
-
-      // Reset the news ticker directly right here!
-      const ticker = document.getElementById("news-ticker");
-      if (ticker && newsHeadlines.length > 0) {
-        const randomHeadline =
-          newsHeadlines[Math.floor(Math.random() * newsHeadlines.length)];
-        ticker.textContent = randomHeadline;
-      }
+      frenzyTimer = 0;
     }
+    updateNewsTicker();
+  }
+
+  // --- FIX: If Max mode is active, refresh the shop text every second so prices/counts update live ---
+  if (
+    typeof batchAmount !== "undefined" &&
+    batchAmount === "special" &&
+    typeof renderShop === "function"
+  ) {
+    renderShop();
   }
 
   checkAchievements();
 }, 1000);
 
-// Loop 2: News Ticker Cycler (Switches news every 7 seconds)
-setInterval(() => {
-  if (typeof newsHeadlines !== "undefined" && newsHeadlines.length > 0) {
-    currentNewsIndex = (currentNewsIndex + 1) % newsHeadlines.length;
-    newsTicker.style.opacity = 0;
-    setTimeout(() => {
-      newsTicker.textContent = newsHeadlines[currentNewsIndex];
-      newsTicker.style.opacity = 1;
-    }, 500);
-  }
-}, 7000);
-
-// Loop 3: Auto-Save backup every 30 seconds
+// Loop 2: Auto-Save backup every 30 seconds
 setInterval(() => {
   saveGame();
 }, 30000);
@@ -1165,6 +1237,11 @@ function closeModals() {
 
 function enterGameFromPrestige() {
   closeModals();
+
+  // FIX: Force the main game screen to update immediately when returning to the game
+  if (typeof updateDisplay === "function") {
+    updateDisplay();
+  }
 }
 
 function openPrestigeMenu() {
@@ -1227,8 +1304,21 @@ function triggerPrestige() {
     }
   });
 
+  score = getStartingCashFromUpgrades();
+
   saveGame();
   openPrestigeMenu();
+
+  // Refresh display and completely re-render the shop so building counts/costs reset
+  if (typeof updateDisplay === "function") updateDisplay();
+  if (typeof renderShop === "function") renderShop(); // <--- This redraws the shop!
+}
+
+function enterGameFromPrestige() {
+  closeModals();
+
+  if (typeof updateDisplay === "function") updateDisplay();
+  if (typeof renderShop === "function") renderShop(); // <--- This too!
 }
 
 function executeReset() {
@@ -1322,7 +1412,7 @@ function adminAddBuildings() {
 
 function adminTriggerFrenzy() {
   if (typeof triggerFrenzy === "function") {
-    triggerFrenzy();
+    spawnGoldenCheese();
   }
   closeAdminPanel();
 }
@@ -1334,5 +1424,50 @@ function adminTriggerMice() {
   closeAdminPanel();
 }
 
-// Kick off game initialization on script load
-initGame();
+// ==========================================
+// SECRET CODES SYSTEM (Cheese Clicker)
+// ==========================================
+
+// Track secret code states
+let typedCheeseUnlocked = false;
+let typedRevertUnlocked = false;
+let typedBuffer = "";
+
+// Secret Code Keypress Listener
+window.addEventListener("keypress", (e) => {
+  typedBuffer += e.key.toLowerCase();
+
+  if (typedBuffer.length > 30) {
+    typedBuffer = typedBuffer.slice(-30);
+  }
+
+  // Check when player types "cheese"
+  if (typedBuffer.endsWith("cheese")) {
+    typedCheeseUnlocked = true;
+
+    // Swap button image to realistic cheese
+    const btn = document.getElementById("main-click-btn");
+    if (btn) {
+      btn.innerHTML = `<img src="Assets/realistic-cheese.png" alt="Realistic Cheese" style="width: 80%; height: 80%; object-fit: contain;" />`;
+    }
+
+    // Let your game engine evaluate and award the achievement automatically!
+    checkAchievements();
+    typedBuffer = "";
+  }
+  // Check when player types "revert"
+  else if (typedBuffer.endsWith("revert")) {
+    typedRevertUnlocked = true;
+
+    // Swap button back to classic emoji
+    const btn = document.getElementById("main-click-btn");
+    if (btn) {
+      btn.innerHTML = "🧀";
+    }
+
+    // Evaluate and award the revert achievement
+    checkAchievements();
+    typedBuffer = "";
+  }
+});
+initGame(); // Start the game initialization process

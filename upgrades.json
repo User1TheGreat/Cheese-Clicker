@@ -122,6 +122,30 @@
     "description": "Adds +1 cheese per manual click."
   },
   {
+    "id": "upg_click_whisk",
+    "type": "upgrade",
+    "category": "click",
+    "target": "whisk",
+    "value": 2,
+    "name": "Balanced Parmesan Wire",
+    "baseCost": 350,
+    "cost": 350,
+    "count": 0,
+    "description": "Adds +2 cheese per manual click."
+  },
+  {
+    "id": "upg_building_whisk",
+    "type": "upgrade",
+    "category": "building_mult",
+    "target": "whisk",
+    "value": 1.5,
+    "name": "Blue Cheese Gears",
+    "baseCost": 150,
+    "cost": 150,
+    "count": 0,
+    "description": "Permanently boosts Rotary Whisk production by +50%."
+  },
+  {
     "id": "upg_building_grater",
     "type": "upgrade",
     "category": "building_mult",
@@ -158,16 +182,16 @@
     "description": "Adds +4 cheese per manual click."
   },
   {
-    "id": "upg_building_whisk",
+    "id": "upg_global_lactic",
     "type": "upgrade",
-    "category": "building_mult",
-    "target": "whisk",
-    "value": 1.5,
-    "name": "Blue Cheese Gears",
-    "baseCost": 150,
-    "cost": 150,
+    "category": "global_mult",
+    "target": "all",
+    "value": 0.06,
+    "name": "Manchego Lactic Acid Culture",
+    "baseCost": 1500,
+    "cost": 1500,
     "count": 0,
-    "description": "Permanently boosts Rotary Whisk production by +50%."
+    "description": "Permanently boosts all building production by +6%."
   },
   {
     "id": "upg_building_farm",
@@ -180,6 +204,18 @@
     "cost": 2000,
     "count": 0,
     "description": "Permanently boosts Dairy Farm production by +50%."
+  },
+  {
+    "id": "upg_click_farm",
+    "type": "upgrade",
+    "category": "click",
+    "target": "farm",
+    "value": 8,
+    "name": "Sturdy Blue Cheese Pitchfork",
+    "baseCost": 3500,
+    "cost": 3500,
+    "count": 0,
+    "description": "Adds +8 cheese per manual click."
   },
   {
     "id": "upg_global_2",
@@ -278,6 +314,18 @@
     "description": "Permanently boosts Moon Cheese Mine production by +50%."
   },
   {
+    "id": "upg_click_diamond_grater",
+    "type": "upgrade",
+    "category": "click_mult",
+    "target": "click",
+    "value": 2,
+    "name": "Diamond Cheese Grater",
+    "baseCost": 500000,
+    "cost": 500000,
+    "count": 0,
+    "description": "Permanently doubles base click power (2x)."
+  },
+  {
     "id": "upg_global_5",
     "type": "upgrade",
     "category": "global_mult",
@@ -290,6 +338,18 @@
     "description": "Permanently boosts all building production by +15%."
   },
   {
+    "id": "upg_building_whey_reactors",
+    "type": "upgrade",
+    "category": "building_mult",
+    "target": "factory",
+    "value": 1.5,
+    "name": "Recycled Whey Reactors",
+    "baseCost": 1000000,
+    "cost": 1000000,
+    "count": 0,
+    "description": "Permanently boosts Factory production by +50%."
+  },
+  {
     "id": "upg_building_portal",
     "type": "upgrade",
     "category": "building_mult",
@@ -300,42 +360,6 @@
     "cost": 2500000,
     "count": 0,
     "description": "Permanently boosts Cheddar Portal production by +50%."
-  },
-  {
-    "id": "upg_click_whisk",
-    "type": "upgrade",
-    "category": "click",
-    "target": "whisk",
-    "value": 2,
-    "name": "Balanced Parmesan Wire",
-    "baseCost": 350,
-    "cost": 350,
-    "count": 0,
-    "description": "Adds +2 cheese per manual click."
-  },
-  {
-    "id": "upg_global_lactic",
-    "type": "upgrade",
-    "category": "global_mult",
-    "target": "all",
-    "value": 0.06,
-    "name": "Manchego Lactic Acid Culture",
-    "baseCost": 1500,
-    "cost": 1500,
-    "count": 0,
-    "description": "Permanently boosts all building production by +6%."
-  },
-  {
-    "id": "upg_click_farm",
-    "type": "upgrade",
-    "category": "click",
-    "target": "farm",
-    "value": 8,
-    "name": "Sturdy Blue Cheese Pitchfork",
-    "baseCost": 3500,
-    "cost": 3500,
-    "count": 0,
-    "description": "Adds +8 cheese per manual click."
   },
   {
     "id": "upg_building_churner",
@@ -362,6 +386,18 @@
     "description": "Permanently boosts all building production by +18%."
   },
   {
+    "id": "upg_click_titanium_fingers",
+    "type": "upgrade",
+    "category": "click_mult",
+    "target": "click",
+    "value": 3,
+    "name": "Titanium Fingers",
+    "baseCost": 5000000,
+    "cost": 5000000,
+    "count": 0,
+    "description": "Permanently triples base click power (3x)."
+  },
+  {
     "id": "upg_click_churner",
     "type": "upgrade",
     "category": "click",
@@ -384,6 +420,18 @@
     "cost": 18000000,
     "count": 0,
     "description": "Permanently boosts Neutron Star Press production by +50%."
+  },
+  {
+    "id": "upg_click_laser_guided",
+    "type": "upgrade",
+    "category": "click_mult",
+    "target": "click",
+    "value": 4,
+    "name": "Laser-Guided Clicks",
+    "baseCost": 50000000,
+    "cost": 50000000,
+    "count": 0,
+    "description": "Permanently quadruples base click power (4x)."
   },
   {
     "id": "upg_global_harmony",
@@ -409,127 +457,100 @@
     "count": 0,
     "description": "Permanently boosts Big Bang Curd Accelerator production by +50%."
   },
-
-  [
-    {
-      "id": "upg_click_diamond_grater",
-      "type": "upgrade",
-      "category": "click_mult",
-      "target": "click",
-      "value": 2,
-      "name": "Diamond Cheese Grater",
-      "baseCost": 500000,
-      "cost": 500000,
-      "count": 0,
-      "description": "Permanently doubles base click power (2x)."
-    },
-    {
-      "id": "upg_click_titanium_fingers",
-      "type": "upgrade",
-      "category": "click_mult",
-      "target": "click",
-      "value": 3,
-      "name": "Titanium Fingers",
-      "baseCost": 5000000,
-      "cost": 5000000,
-      "count": 0,
-      "description": "Permanently triples base click power (3x)."
-    },
-    {
-      "id": "upg_click_laser_guided",
-      "type": "upgrade",
-      "category": "click_mult",
-      "target": "click",
-      "value": 4,
-      "name": "Laser-Guided Clicks",
-      "baseCost": 50000000,
-      "cost": 50000000,
-      "count": 0,
-      "description": "Permanently quadruples base click power (4x)."
-    },
-    {
-      "id": "upg_click_quantum_matrix",
-      "type": "upgrade",
-      "category": "click_mult",
-      "target": "click",
-      "value": 5,
-      "name": "Quantum Click Matrix",
-      "baseCost": 500000000,
-      "cost": 500000000,
-      "count": 0,
-      "description": "Permanently multiplies base click power by 5x."
-    },
-    {
-      "id": "upg_click_singularity_press",
-      "type": "upgrade",
-      "category": "click_mult",
-      "target": "click",
-      "value": 10,
-      "name": "Singularity Press",
-      "baseCost": 5000000000,
-      "cost": 5000000000,
-      "count": 0,
-      "description": "Permanently multiplies base click power by 10x."
-    },
-    {
-      "id": "upg_building_whey_reactors",
-      "type": "upgrade",
-      "category": "building_mult",
-      "target": "factory",
-      "value": 1.5,
-      "name": "Recycled Whey Reactors",
-      "baseCost": 1000000,
-      "cost": 1000000,
-      "count": 0,
-      "description": "Permanently boosts Factory production by +50%."
-    },
-    {
-      "id": "upg_global_subzero_vaults",
-      "type": "upgrade",
-      "category": "global_mult",
-      "target": "global",
-      "value": 1.25,
-      "name": "Sub-Zero Curing Vaults",
-      "baseCost": 10000000,
-      "cost": 10000000,
-      "count": 0,
-      "description": "Permanently increases overall global Score Per Second by +25%."
-    },
-    {
-      "id": "upg_building_interdimensional_rennet",
-      "type": "upgrade",
-      "category": "building_mult",
-      "target": "portal",
-      "value": 2.0,
-      "name": "Interdimensional Rennet",
-      "baseCost": 100000000,
-      "cost": 100000000,
-      "count": 0,
-      "description": "Permanently doubles Portal building production (2x)."
-    },
-    {
-      "id": "upg_building_giga_churner",
-      "type": "upgrade",
-      "category": "building_mult",
-      "target": "churner",
-      "value": 2.0,
-      "name": "Giga-Churner Turbines",
-      "baseCost": 1000000000,
-      "cost": 1000000000,
-      "count": 0,
-      "description": "Permanently doubles Churner building production (2x)."
-    },
-    {
-      "id": "upg_global_cosmic_core",
-      "type": "upgrade",
-      "category": "global_mult",
-      "target": "global",
-      "value": 3.0,
-      "name": "The Cosmic Dairy Core",
-      "baseCost": 10000000000,
-      "cost": 10000000000,
-      "count": 0,
-      "description": "Permanently triples overall global Score Per Second (3x)."
-    }
-  ]
+  {
+    "id": "upg_building_interdimensional_rennet",
+    "type": "upgrade",
+    "category": "building_mult",
+    "target": "portal",
+    "value": 2.0,
+    "name": "Interdimensional Rennet",
+    "baseCost": 100000000,
+    "cost": 100000000,
+    "count": 0,
+    "description": "Permanently doubles Portal building production (2x)."
+  },
+  {
+    "id": "upg_click_quantum_matrix",
+    "type": "upgrade",
+    "category": "click_mult",
+    "target": "click",
+    "value": 5,
+    "name": "Quantum Click Matrix",
+    "baseCost": 500000000,
+    "cost": 500000000,
+    "count": 0,
+    "description": "Permanently multiplies base click power by 5x."
+  },
+  {
+    "id": "upg_click_heavy_1",
+    "type": "upgrade",
+    "category": "click",
+    "target": "accelerator",
+    "value": 1000,
+    "name": "Singularity Clicker",
+    "baseCost": 2000000000,
+    "cost": 2000000000,
+    "count": 0,
+    "description": "Adds +1,000 cheese per manual click."
+  },
+  {
+    "id": "upg_building_giga_churner",
+    "type": "upgrade",
+    "category": "building_mult",
+    "target": "churner",
+    "value": 2.0,
+    "name": "Giga-Churner Turbines",
+    "baseCost": 1000000000,
+    "cost": 1000000000,
+    "count": 0,
+    "description": "Permanently doubles Churner building production (2x)."
+  },
+  {
+    "id": "upg_click_singularity_press",
+    "type": "upgrade",
+    "category": "click_mult",
+    "target": "click",
+    "value": 10,
+    "name": "Singularity Press",
+    "baseCost": 5000000000,
+    "cost": 5000000000,
+    "count": 0,
+    "description": "Permanently multiplies base click power by 10x."
+  },
+  {
+    "id": "upg_global_cosmic_core",
+    "type": "upgrade",
+    "category": "global_mult",
+    "target": "global",
+    "value": 3.0,
+    "name": "The Cosmic Dairy Core",
+    "baseCost": 10000000000,
+    "cost": 10000000000,
+    "count": 0,
+    "description": "Permanently triples overall global Score Per Second (3x)."
+  },
+  {
+    "id": "upg_click_heavy_2",
+    "type": "upgrade",
+    "category": "click",
+    "target": "accelerator",
+    "value": 10000,
+    "name": "Big Bang Fingertips",
+    "baseCost": 50000000000,
+    "cost": 50000000000,
+    "count": 0,
+    "description": "Adds +10,000 cheese per manual click."
+  },
+  {
+    "id": "upg_click_heavy_3",
+    "type": "upgrade",
+    "category": "click",
+    "target": "accelerator",
+    "value": 50000,
+    "name": "Cosmic Tap",
+    "baseCost": 250000000000,
+    "cost": 250000000000,
+    "count": 0,
+    "description": "Adds +50,000 cheese per manual click."
+  }
 ]

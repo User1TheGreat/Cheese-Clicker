@@ -1,168 +1,168 @@
 {
   "prestige": [
     {
-      "id": "p_click_1",
-      "name": "Gouda Touch",
-      "desc": "Increase your click power by 1.25x.",
-      "cost": 15,
+      "id": "p_click_0",
+      "name": "Melted Finger",
+      "desc": "A tiny click boost to start your journey (+15% click power).",
+      "cost": 1,
       "type": "click_mult",
-      "val": 1.25
+      "val": 1.15
     },
     {
-      "id": "p_click_2",
-      "name": "Cheddar Reflexes",
-      "desc": "Increase manual click power by 1.5x.",
-      "cost": 75,
+      "id": "p_sps_0",
+      "name": "Micro Curd",
+      "desc": "A gentle passive breeze for your buildings (+10% SPS).",
+      "cost": 5,
+      "type": "sps_mult",
+      "val": 0.1
+    },
+    {
+      "id": "p_click_1",
+      "name": "Gouda Touch",
+      "desc": "Increase your manual click power by 1.5x.",
+      "cost": 25,
       "type": "click_mult",
       "val": 1.5
     },
     {
-      "id": "p_click_3",
-      "name": "Titanium Fingertips",
-      "desc": "Double your manual click power further (2x).",
-      "cost": 500,
-      "type": "click_mult",
-      "val": 2.0
-    },
-    {
       "id": "p_sps_1",
       "name": "Brie Flow",
-      "desc": "Boost all building production by +10%.",
-      "cost": 50,
+      "desc": "Boost all building production by +25%.",
+      "cost": 75,
       "type": "sps_mult",
-      "val": 0.1
-    },
-    {
-      "id": "p_sps_2",
-      "name": "Swiss Efficiency",
-      "desc": "Boost all building production by +20%.",
-      "cost": 150,
-      "type": "sps_mult",
-      "val": 0.2
-    },
-    {
-      "id": "p_sps_3",
-      "name": "Provolone Pumping",
-      "desc": "Boost all building production by +40%.",
-      "cost": 350,
-      "type": "sps_mult",
-      "val": 0.4
-    },
-    {
-      "id": "p_sps_4",
-      "name": "Gorgonzola Surge",
-      "desc": "Boost all building production by +75%.",
-      "cost": 850,
-      "type": "sps_mult",
-      "val": 0.75
+      "val": 0.25
     },
     {
       "id": "p_cheap_1",
       "name": "Feta Subsidies",
-      "desc": "Reduce building cost scaling slightly (-1%).",
-      "cost": 40,
-      "type": "cost_reduce",
-      "val": 0.01
-    },
-    {
-      "id": "p_cheap_2",
-      "name": "Ricotta Bargains",
-      "desc": "Reduce building cost scaling further (-3%).",
+      "desc": "Streamline building costs slightly (-2%).",
       "cost": 150,
       "type": "cost_reduce",
-      "val": 0.03
+      "val": 0.02
     },
     {
-      "id": "p_cheap_3",
-      "name": "Emmental Economy",
-      "desc": "Massively streamline building costs (-6%).",
-      "cost": 750,
-      "type": "cost_reduce",
-      "val": 0.06
-    },
-    {
-      "id": "p_start_1",
-      "name": "Parmesan Starter",
-      "desc": "Start every run with +1,000 cheese.",
-      "cost": 60,
-      "type": "starting_cash",
-      "val": 1000
-    },
-    {
-      "id": "p_start_2",
-      "name": "Blue Cheese Vault",
-      "desc": "Start every run with +25,000 cheese.",
+      "id": "p_click_4",
+      "name": "Mozzarella Momentum",
+      "desc": "Multiply manual click power by 3.5x.",
       "cost": 300,
-      "type": "starting_cash",
-      "val": 25000
+      "type": "click_mult",
+      "val": 3.5
     },
     {
-      "id": "p_start_3",
-      "name": "Imperial Cheese Reserve",
-      "desc": "Start every run with +500,000 cheese.",
-      "cost": 1500,
-      "type": "starting_cash",
-      "val": 500000
+      "id": "p_click_2",
+      "name": "Cheddar Reflexes",
+      "desc": "Significantly increase manual click power (2.5x).",
+      "cost": 1000,
+      "type": "click_mult",
+      "val": 2.5
+    },
+    {
+      "id": "p_sps_2",
+      "name": "Swiss Efficiency",
+      "desc": "Double all building production (+100%).",
+      "cost": 5000,
+      "type": "sps_mult",
+      "val": 1.0
     },
     {
       "id": "p_grater_boost",
       "name": "Sharper Edges",
-      "desc": "Cheese Graters produce 2x more output.",
-      "cost": 70,
+      "desc": "Cheese Graters produce 3x more output.",
+      "cost": 10000,
       "type": "building_spec",
       "target": "grater",
-      "val": 2
+      "val": 3
     },
     {
       "id": "p_whisk_boost",
       "name": "Turbo Motor",
-      "desc": "Rotary Whisks produce 2x more output.",
-      "cost": 120,
+      "desc": "Rotary Whisks produce 3x more output.",
+      "cost": 25000,
       "type": "building_spec",
       "target": "whisk",
-      "val": 2
+      "val": 3
+    },
+    {
+      "id": "p_cheap_2",
+      "name": "Ricotta Bargains",
+      "desc": "Reduce building cost scaling further (-5%).",
+      "cost": 50000,
+      "type": "cost_reduce",
+      "val": 0.05
+    },
+    {
+      "id": "p_click_5",
+      "name": "Asiago Impact",
+      "desc": "Multiply manual click power by a massive 10x.",
+      "cost": 150000,
+      "type": "click_mult",
+      "val": 10.0
     },
     {
       "id": "p_farm_boost",
       "name": "Super Fertilizer",
-      "desc": "Dairy Farms produce 2x more output.",
-      "cost": 200,
+      "desc": "Dairy Farms produce 4x more output.",
+      "cost": 400000,
       "type": "building_spec",
       "target": "farm",
-      "val": 2
+      "val": 4
+    },
+    {
+      "id": "p_sps_3",
+      "name": "Provolone Pumping",
+      "desc": "Massively boost all building production (+300%).",
+      "cost": 1000000,
+      "type": "sps_mult",
+      "val": 3.0
     },
     {
       "id": "p_factory_boost",
       "name": "Industrial Melter",
-      "desc": "Fondue Factories produce 2x more output.",
-      "cost": 400,
+      "desc": "Fondue Factories produce 5x more output.",
+      "cost": 5000000,
       "type": "building_spec",
       "target": "factory",
-      "val": 2
+      "val": 5
     },
     {
-      "id": "p_lucky_1",
-      "name": "Golden Curd Radar",
-      "desc": "Increase general production global bonus by +10%.",
-      "cost": 200,
-      "type": "sps_mult",
-      "val": 0.1
+      "id": "p_click_3",
+      "name": "Titanium Fingertips",
+      "desc": "Multiply manual click power by 5x.",
+      "cost": 25000000,
+      "type": "click_mult",
+      "val": 5.0
     },
     {
       "id": "p_ultimate_1",
       "name": "The Big Cheese Legacy",
-      "desc": "Multiply all production across the board by 2x.",
-      "cost": 1200,
+      "desc": "Multiply all production across the board by 10x.",
+      "cost": 100000000,
       "type": "sps_mult",
-      "val": 2.0
+      "val": 10.0
+    },
+    {
+      "id": "p_click_6",
+      "name": "God-Tier Grater Hand",
+      "desc": "Multiply manual click power by a staggering 100x.",
+      "cost": 500000000,
+      "type": "click_mult",
+      "val": 100.0
     },
     {
       "id": "p_ultimate_2",
       "name": "The Omega Cheese",
-      "desc": "Multiply all production across the board by 3x.",
-      "cost": 3000,
+      "desc": "Multiply all production across the board by 50x.",
+      "cost": 10000000000,
       "type": "sps_mult",
-      "val": 3.0
+      "val": 50.0
+    },
+    {
+      "id": "p_ultimate_end",
+      "name": "The Cosmic Wheel",
+      "desc": "Ascend beyond mortal dairy. Multiply all production by 500x.",
+      "cost": 999999999999,
+      "type": "sps_mult",
+      "val": 500.0
     }
   ],
   "achievements": [
@@ -504,19 +504,19 @@
     },
     {
       "id": "ach_extra_4",
-      "name": "The Golden Touch",
-      "desc": "Click 10 Golden Cheeses.",
+      "name": "Building Mania",
+      "desc": "Own 250 total buildings across your empire.",
       "unlocked": false,
       "isSecret": false,
-      "condition": { "type": "golden_clicks", "value": 10 }
+      "condition": { "type": "total_buildings", "value": 250 }
     },
     {
       "id": "ach_extra_5",
-      "name": "Rodent Wrangler",
-      "desc": "Catch 15 mice during Mouse Invasions.",
+      "name": "Cheese Empire",
+      "desc": "Own 500 total buildings across your empire.",
       "unlocked": false,
       "isSecret": false,
-      "condition": { "type": "mice_clicked", "value": 15 }
+      "condition": { "type": "total_buildings", "value": 500 }
     },
     {
       "id": "secret_1",
@@ -524,7 +524,7 @@
       "desc": "Hint: MY FINGERS ARE GOING TO VAPORIZE!",
       "unlocked": false,
       "isSecret": true,
-      "condition": { "type": "session_clicks", "value": 250 }
+      "condition": { "type": "session_clicks", "value": 5000 }
     },
     {
       "id": "secret_2",
@@ -574,6 +574,22 @@
       "unlocked": false,
       "isSecret": true,
       "condition": { "type": "exact_one_of_each" }
+    },
+    {
+      "id": "secret_9",
+      "name": "???",
+      "desc": "Hint: Type out your favorite yellow dairy block.",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "secret_code", "value": "cheese" }
+    },
+    {
+      "id": "secret_10",
+      "name": "???",
+      "desc": "Hint: Undo what has been done to bring back simplicity.",
+      "unlocked": false,
+      "isSecret": true,
+      "condition": { "type": "secret_code", "value": "revert" }
     }
   ]
 }

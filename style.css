@@ -3,6 +3,8 @@
 /* ========================================== */
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--panel-border) var(--bg-main);
   margin: 0;
   padding: 0;
   font-family: "Outfit", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -11,9 +13,11 @@
 :root {
   --bg-main: #1e1b18;
   --panel-bg: #2b2621;
+  --panel-hover: #363029;
   --panel-border: #443c35;
   --accent: #ffb703;
   --accent-hover: #fb8500;
+  --accent-glow: rgba(255, 183, 3, 0.25);
   --text-main: #f3f4f6;
   --text-muted: #9ca3af;
   --danger: #ef4444;
@@ -23,7 +27,7 @@
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  height: 100vh;
+  height: 100vh; /* Restored back to 100vh so your flex layout and cheese stay visible */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -31,10 +35,12 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ========================================== */
-/* START MENU and UPDATE LOGS MODAL           */
+/* START MENU and UPDATE LOGS MODAL          */
 /* ========================================== */
 
 #start-menu {
@@ -43,7 +49,9 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(15, 13, 11, 0.95);
+  background-color: rgba(15, 13, 11, 0.85);
+  backdrop-filter: blur(4px); /* Sleek background blur effect */
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,7 +64,7 @@ body {
   border: 1px solid var(--accent);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255, 183, 3, 0.2);
+  box-shadow: 0 0 25px var(--accent-glow); /* Uses our new variable! */
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -76,7 +84,9 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(15, 13, 11, 0.95);
+  background-color: rgba(15, 13, 11, 0.85);
+  backdrop-filter: blur(4px); /* Sleek background blur effect */
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,37 +101,53 @@ body {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.primary-btn:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px); /* Slight lift effect on hover */
+  box-shadow: 0 4px 12px var(--accent-glow); /* Soft glow bloom */
+}
+
+.primary-btn:active {
+  transform: translateY(0); /* Press down effect */
 }
 
 /* ========================================== */
 /* CUSTOM SCROLLBARS                          */
 /* ========================================== */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #141210;
+  background: var(--bg-main);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--panel-border);
   border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--accent-hover);
 }
 
 /* ========================================== */
 /* NEWS TICKER BAR                            */
 /* ========================================== */
 .news-ticker-container {
-  background-color: #141210;
+  background-color: var(--bg-main);
   border-bottom: 1px solid var(--panel-border);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); /* Gives a sunken panel effect */
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
@@ -134,6 +160,7 @@ body {
 
 .news-ticker {
   transition: opacity 0.5s ease;
+  text-shadow: 0 0 8px var(--accent-glow); /* Adds a soft golden glow to news text */
 }
 
 /* ========================================== */
@@ -146,6 +173,7 @@ body {
   padding: 16px;
   flex: 1;
   overflow: hidden;
+  min-height: 0; /* Prevents grid items from overflowing */
 }
 
 /* Common Panel Styling */
@@ -160,13 +188,17 @@ body {
   padding: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease; /* Smooth hover prep */
 }
 
 .load-notification {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #2b2b2b;
+  background-color: var(--panel-bg); /* Uses theme variable */
+  border: 1px solid var(--accent); /* Matches golden theme */
   color: #fff;
   padding: 12px 20px;
   border-radius: 8px;
@@ -186,6 +218,7 @@ body {
 .stats-header h2 {
   font-size: 32px;
   color: var(--accent);
+  text-shadow: 0 0 12px var(--accent-glow); /* Adds a soft golden glow */
 }
 
 .stats-header p {
@@ -208,7 +241,9 @@ body {
   height: 220px;
   font-size: 90px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(255, 183, 3, 0.3);
+  box-shadow:
+    0 10px 25px var(--accent-glow),
+    inset 0 0 15px rgba(255, 255, 255, 0.2); /* Enhanced 3D glow */
   transition:
     transform 0.08s ease,
     box-shadow 0.08s ease;
@@ -228,6 +263,13 @@ body {
   box-shadow: 0 4px 12px rgba(255, 183, 3, 0.3);
 }
 
+.cheese-btn img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  pointer-events: none; /* Prevents the image from being weirdly draggable */
+}
+
 .save-footer {
   display: flex;
   justify-content: space-between;
@@ -245,7 +287,7 @@ body {
 }
 
 .footer-action-btn {
-  background-color: #3b332b;
+  background-color: var(--panel-bg); /* Uses theme variable */
   border: 1px solid var(--panel-border);
   color: var(--text-main);
   padding: 6px 10px;
@@ -257,7 +299,7 @@ body {
 }
 
 .footer-action-btn:hover {
-  background-color: var(--panel-border);
+  background-color: var(--panel-hover); /* Uses our hover variable */
 }
 
 .danger-action:hover {
@@ -280,7 +322,6 @@ body {
   background-color: var(--accent);
   color: var(--bg-main);
 }
-
 /* ========================================== */
 /* MIDDLE COLUMN: ACTIVE BUILDINGS            */
 /* ========================================== */
@@ -289,6 +330,7 @@ body {
   font-size: 18px;
   margin-bottom: 12px;
   color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow); /* Soft title glow */
   border-bottom: 1px solid var(--panel-border);
   padding-bottom: 8px;
 }
@@ -310,6 +352,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.active-building-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .active-building-info h4 {
@@ -339,9 +391,10 @@ body {
 
 .mode-toggle {
   display: flex;
-  background: #141210;
+  background: var(--bg-main); /* Uses variable */
   border-radius: 6px;
   padding: 2px;
+  border: 1px solid var(--panel-border);
 }
 
 .mode-btn {
@@ -368,7 +421,7 @@ body {
 
 .batch-btn {
   flex: 1;
-  background-color: #141210;
+  background-color: var(--bg-main); /* Uses variable */
   border: 1px solid var(--panel-border);
   color: var(--text-muted);
   font-size: 12px;
@@ -381,7 +434,7 @@ body {
 .batch-btn.active {
   border-color: var(--accent);
   color: var(--accent);
-  background-color: #3b332b;
+  background-color: var(--panel-hover); /* Uses hover variable */
 }
 
 .store-scroll-area {
@@ -416,6 +469,16 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.upgrade-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .upgrade-info h4 {
@@ -465,12 +528,14 @@ body {
   position: fixed;
   font-size: 18px;
   font-weight: 800;
-  color: rgb(198, 192, 7);
+  color: var(--accent); /* Uses theme variable */
   pointer-events: none;
   user-select: none;
   animation: floatUp 0.6s ease-out forwards;
   z-index: 9999;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.8),
+    0 0 10px var(--accent-glow); /* Glowing accent shadow */
 }
 
 @keyframes floatUp {
@@ -499,11 +564,11 @@ body {
 @keyframes pulseCheese {
   0% {
     transform: scale(1);
-    filter: drop-shadow(0 0 8px gold);
+    filter: drop-shadow(0 0 8px var(--accent));
   }
   100% {
     transform: scale(1.15);
-    filter: drop-shadow(0 0 16px #ffea00);
+    filter: drop-shadow(0 0 16px var(--accent-hover));
   }
 }
 
@@ -520,10 +585,15 @@ body {
 
 .mouse-item {
   position: absolute;
-  font-size: 2rem;
+  font-size: 2.5rem;
   cursor: pointer;
   user-select: none;
   transition: transform 6s linear;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5)); /* Adds depth to mice */
+}
+
+.mouse-item:hover {
+  transform: scale(1.15) rotate(-10deg); /* Interactive hover reaction */
 }
 
 /* ========================================== */
@@ -541,6 +611,7 @@ body {
   align-items: center;
   z-index: 10000;
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .modal-content {
@@ -574,6 +645,7 @@ body {
 .modal-header h2 {
   color: var(--accent);
   font-size: 22px;
+  text-shadow: 0 0 8px var(--accent-glow); /* Soft title glow */
 }
 
 .close-modal-btn {
@@ -582,13 +654,15 @@ body {
   color: var(--text-muted);
   font-size: 20px;
   cursor: pointer;
-  transition: color 0.2s;
+  transition:
+    color 0.2s,
+    transform 0.2s;
 }
 
 .close-modal-btn:hover {
   color: var(--text-main);
+  transform: scale(1.1);
 }
-
 /* ========================================== */
 /* ACHIEVEMENTS GRID & CARDS                  */
 /* ========================================== */
@@ -602,7 +676,7 @@ body {
 }
 
 .achievement-card {
-  background-color: #241f1b;
+  background-color: var(--panel-bg); /* Uses theme variable */
   border: 1px solid var(--panel-border);
   border-radius: 8px;
   padding: 12px;
@@ -612,25 +686,32 @@ body {
   transition:
     opacity 0.2s,
     border-color 0.2s,
-    box-shadow 0.2s;
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.achievement-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* Style specifically for locked achievements */
 .achievement-card.locked {
-  opacity: 0.5;
-  filter: grayscale(30%);
+  opacity: 0.4;
+  filter: grayscale(40%);
 }
 
 /* Style specifically for unlocked achievements */
 .achievement-card.unlocked {
   opacity: 1;
-  border: 1px solid var(--accent); /* Shiny yellow border */
+  border: 1px solid var(--accent);
   background: linear-gradient(
     135deg,
-    #241f1b 0%,
-    #352c22 100%
-  ); /* Subtle bright gradient */
-  box-shadow: 0 0 10px rgba(255, 183, 3, 0.15); /* Soft gold glow */
+    var(--panel-bg) 0%,
+    var(--panel-hover) 100%
+  ); /* Uses modular theme variables */
+  box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .achievement-icon {
@@ -651,7 +732,6 @@ body {
   font-size: 11px;
   color: var(--text-muted);
 }
-
 /* ========================================== */
 /* PRESTIGE SHOP GRID & BUTTONS               */
 /* ========================================== */
@@ -666,9 +746,9 @@ body {
 }
 
 .prestige-card {
-  background-color: #141210; /* Darker, distinct box background */
+  background-color: var(--bg-main);
   border: 1px solid var(--panel-border);
-  border-radius: 10px; /* Clearer corner radius */
+  border-radius: 10px;
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -676,17 +756,22 @@ body {
   gap: 8px;
   transition:
     border-color 0.2s,
-    background-color 0.2s;
+    background-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .prestige-card:hover {
-  background-color: #1e1b18;
+  background-color: var(--panel-hover);
   border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-glow);
 }
 
 .prestige-card h4 {
   font-size: 14px;
   color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
 }
 
 .prestige-card p {
@@ -704,11 +789,18 @@ body {
   font-weight: bold;
   font-size: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition:
+    background-color 0.2s,
+    transform 0.15s ease;
 }
 
 .prestige-buy-btn:hover:not([disabled]) {
   background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.prestige-buy-btn:active:not([disabled]) {
+  transform: translateY(0);
 }
 
 .prestige-buy-btn[disabled] {
@@ -723,6 +815,7 @@ body {
 .modal-content h3 {
   color: var(--accent);
   margin-bottom: 10px;
+  text-shadow: 0 0 8px var(--accent-glow);
 }
 
 .modal-content p {
@@ -752,11 +845,14 @@ body {
   font-weight: bold;
   cursor: pointer;
   flex: 1;
-  transition: opacity 0.2s;
+  transition:
+    filter 0.2s,
+    transform 0.15s ease;
 }
 
 .danger-btn:hover {
-  opacity: 0.9;
+  filter: brightness(1.1);
+  transform: translateY(-1px);
 }
 
 .secondary-btn,
@@ -768,12 +864,15 @@ body {
   font-weight: bold;
   cursor: pointer;
   flex: 1;
-  transition: opacity 0.2s;
+  transition:
+    filter 0.2s,
+    transform 0.15s ease;
 }
 
 .secondary-btn {
-  background-color: #3b332b;
+  background-color: var(--panel-bg); /* Uses theme variable */
   color: var(--text-main);
+  border: 1px solid var(--panel-border);
 }
 
 .success-btn {
@@ -789,7 +888,8 @@ body {
 .secondary-btn:hover,
 .success-btn:hover,
 .warning-btn:hover {
-  opacity: 0.9;
+  filter: brightness(1.1);
+  transform: translateY(-1px);
 }
 
 #admin-panel-modal {
@@ -799,6 +899,8 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(15, 13, 11, 0.95);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
